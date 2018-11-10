@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.boring.gangmin.counter">
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/count"
+        android:label="숫자 세기"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Counter">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
