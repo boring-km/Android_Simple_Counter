@@ -8,15 +8,17 @@
     android:visibility="visible">
 
     <EditText
-        android:id="@+id/countNum"
+        android:id="@+id/countNumber"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:autofillHints="0"
         android:background="#645af76a"
         android:ems="10"
+        android:hint="@string/zero"
         android:imeOptions="actionDone"
         android:inputType="number"
         android:selectAllOnFocus="true"
-        android:text="0"
+        android:text="@string/zero"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="150sp" />
@@ -27,29 +29,31 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/minus_btn"
+            android:id="@+id/minusButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@android:color/background_light"
-            android:text="-"
+            android:text="@string/minus"
             android:textSize="60sp" />
 
         <Button
-            android:id="@+id/reset_btn"
+            android:id="@+id/resetButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/holo_green_light"
-            android:text="RESET"
+            android:text="@string/reset"
             android:textSize="50sp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/plus_btn"
+        android:id="@+id/plusButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@android:color/black"
-        android:text="+"
+        android:text="@string/plus"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="200sp" />
