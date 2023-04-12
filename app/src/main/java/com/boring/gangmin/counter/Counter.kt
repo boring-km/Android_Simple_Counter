@@ -8,17 +8,19 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.boring.gangmin.counter.databinding.ActivityMainBinding
 import java.lang.NumberFormatException
 
 class Counter : AppCompatActivity() {
 
     private var pressTime: Long = 0
     private var number: CountNumber = CountNumber(0)
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         number = CountNumber(getSharedPreferences("key", 0).getInt("number", 0))
         setCountNumberActionListener(getInputMethodManager())
@@ -29,17 +31,17 @@ class Counter : AppCompatActivity() {
     }
 
     private fun setResetButtonClickListener() {
-        resetButton.setOnClickListener {
+        binding.resetButton.setOnClickListener {
             number.setZero()
             setCountNumber()
         }
     }
 
     private fun setMinusButtonClickListener() {
-        minusButton.setOnClickListener {
+        binding.minusButton.setOnClickListener {
             if (isIntNumber()) {
                 getNotEmptyCountNumber()
-                number.setNumber(countNumber.text)
+                number.setNumber(binding.countNumber.text)
                 number.minus()
             }
             setCountNumber()
@@ -48,11 +50,11 @@ class Counter : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private fun setPlusButtonClickListener() {
-        plusButton.setOnClickListener {
+        binding.plusButton.setOnClickListener {
             (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(3)
             if (isIntNumber()) {
                 getNotEmptyCountNumber()
-                number.setNumber(countNumber.text)
+                number.setNumber(binding.countNumber.text)
                 number.plus()
             }
             setCountNumber()
@@ -60,13 +62,13 @@ class Counter : AppCompatActivity() {
     }
 
     private fun getNotEmptyCountNumber(): Int {
-        return if (countNumber.text.toString().isEmpty()) 0
-        else Integer.parseInt(countNumber.text.toString())
+        return if (binding.countNumber.text.toString().isEmpty()) 0
+        else Integer.parseInt(binding.countNumber.text.toString())
     }
 
     private fun isIntNumber(): Boolean {
         try {
-            Integer.parseInt(countNumber.text.toString())
+            Integer.parseInt(binding.countNumber.text.toString())
         } catch (e: NumberFormatException) {
             Toast.makeText(applicationContext, "정수 범위에서 이용해 주세요", Toast.LENGTH_SHORT).show()
             return false
@@ -75,10 +77,10 @@ class Counter : AppCompatActivity() {
     }
 
     private fun setCountNumberActionListener(inputMethodManager: InputMethodManager) {
-        countNumber.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
+        binding.countNumber.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                if (isIntNumber()) number.setNumber(countNumber.text)
-                inputMethodManager.hideSoftInputFromWindow(countNumber.windowToken, 0)
+                if (isIntNumber()) number.setNumber(binding.countNumber.text)
+                inputMethodManager.hideSoftInputFromWindow(binding.countNumber.windowToken, 0)
             } else {
                 return@OnEditorActionListener true
             }
@@ -88,13 +90,13 @@ class Counter : AppCompatActivity() {
 
     private fun getInputMethodManager(): InputMethodManager {
         val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        countNumber.imeOptions = EditorInfo.IME_ACTION_DONE
+        binding.countNumber.imeOptions = EditorInfo.IME_ACTION_DONE
         setCountNumber()
         return inputMethodManager
     }
 
     private fun setCountNumber() {
-        countNumber.setText(number.number.toString())
+        binding.countNumber.setText(number.number.toString())
     }
 
     override fun onBackPressed() {
