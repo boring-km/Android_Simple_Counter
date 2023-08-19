@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
     defaultConfig {
         applicationId "com.boring.gangmin.counter"
         minSdkVersion 21
-        targetSdkVersion 33
-        versionCode 5
-        versionName "1.5.0"
+        targetSdk 34
+        versionCode 151
+        versionName "1.5.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,27 +21,28 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    kotlin {
+        jvmToolchain(17)
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
     buildFeatures {
-        viewBinding true
         compose true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.3'
+        kotlinCompilerExtensionVersion "1.4.3"
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.boring.gangmin.counter'
 }
 
 dependencies {
@@ -51,11 +52,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation("androidx.compose.ui:ui:1.5.0")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
+    implementation("androidx.compose.material3:material3:1.1.1")
+
+
     implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.activity:activity-compose:1.7.0'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
