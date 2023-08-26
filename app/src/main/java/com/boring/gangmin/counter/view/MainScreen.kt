@@ -15,9 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,14 +24,12 @@ import androidx.compose.ui.unit.dp
 import com.boring.gangmin.counter.ui.CounterTheme
 import com.boring.gangmin.counter.ui.deepGreen
 import com.boring.gangmin.counter.ui.greenBackgroundColor
-import com.boring.gangmin.counter.utils.transferStringToInt
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(viewModel: CounterViewModel = CounterViewModel()) {
+fun MainScreen(viewModel: CounterViewModel = CounterViewModel(), onVibrate: () -> Unit = {}) {
     CounterTheme {
         Scaffold {
-
             val text = viewModel.text.collectAsState().value
 
             Column {
@@ -83,6 +78,7 @@ fun MainScreen(viewModel: CounterViewModel = CounterViewModel()) {
                 TextButton(
                     onClick = {
                         viewModel.add()
+                        onVibrate()
                     }, modifier = Modifier
                         .background(Color.Black)
                         .fillMaxSize()
