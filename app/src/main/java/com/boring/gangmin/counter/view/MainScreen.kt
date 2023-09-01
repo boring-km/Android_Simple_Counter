@@ -27,7 +27,7 @@ import com.boring.gangmin.counter.ui.greenBackgroundColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(viewModel: CounterViewModel = CounterViewModel(), onVibrate: () -> Unit = {}) {
+fun MainScreen(viewModel: CounterViewModel = CounterViewModel(), onTouch: () -> Unit = {}, onVibrate: () -> Unit = {}) {
     CounterTheme {
         Scaffold {
             val text = viewModel.text.collectAsState().value
@@ -78,6 +78,7 @@ fun MainScreen(viewModel: CounterViewModel = CounterViewModel(), onVibrate: () -
                 TextButton(
                     onClick = {
                         viewModel.add()
+                        onTouch()
                         onVibrate()
                     }, modifier = Modifier
                         .background(Color.Black)
