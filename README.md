@@ -4,5 +4,5 @@
 
 ## 할 일
 
-- [ ] Jetpack Compose 사용
-- [ ] Gradle 버전 최신화 및 targetSDK 최신화
+- [X] Jetpack Compose 사용
+- [X] Gradle 버전 최신화 및 targetSDK 최신화
