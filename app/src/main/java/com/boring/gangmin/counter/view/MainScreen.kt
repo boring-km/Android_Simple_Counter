@@ -34,7 +34,7 @@ fun MainScreen(
 ) {
     CounterTheme {
         Scaffold {
-            val text = viewModel.text.collectAsState().value
+            val text = viewModel.counterNumber.collectAsState(initial = 0).value.toString()
 
             Column {
                 BasicTextField(

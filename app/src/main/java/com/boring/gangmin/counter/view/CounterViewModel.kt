@@ -3,12 +3,12 @@ package com.boring.gangmin.counter.view
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.boring.gangmin.counter.data.NumberRepository
+import com.boring.gangmin.counter.data.CounterNumberRepository
 
 class CounterViewModel : ViewModel() {
 
-    private val repository = NumberRepository()
-    val text = repository.text
+    private val repository = CounterNumberRepository()
+    val counterNumber = repository.counterNumber
 
     fun add() = repository.add()
 
