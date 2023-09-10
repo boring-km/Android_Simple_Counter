@@ -3,55 +3,24 @@ package com.boring.gangmin.counter.view
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.boring.gangmin.counter.utils.transferStringToInt
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.boring.gangmin.counter.data.NumberRepository
 
-class CounterViewModel: ViewModel() {
+class CounterViewModel : ViewModel() {
 
-    private val number = MutableStateFlow(0)
-    val text = MutableStateFlow("0")
+    private val repository = NumberRepository()
+    val text = repository.text
 
-    fun add() {
-        number.value += 1
-        setNumberText()
-    }
+    fun add() = repository.add()
 
-    fun minus() {
-        if (number.value > 0) {
-            number.value -= 1
-            setNumberText()
-        }
-    }
+    fun minus() = repository.minus()
 
-    fun reset() {
-        number.value = 0
-        setNumberText()
-    }
+    fun reset() = repository.reset()
 
-    fun setValue(str: String) {
-        str.transferStringToInt().onSuccess {
-            number.value = it
-            setNumberText()
-        }.onFailure {
-            number.value = 0
-            setNumberText()
-        }
-    }
+    fun setValue(str: String) = repository.setValue(str)
 
-    fun init(context: Context) {
-        number.value = context.getSharedPreferences("key", 0).getInt("number", 0)
-        setNumberText()
-    }
+    fun init(context: Context) = repository.init(context)
 
-    private fun setNumberText() {
-        text.value = number.value.toString()
-    }
-
-    fun saveNumber(context: Context) {
-        val edit = context.getSharedPreferences("key", 0).edit()
-        edit.putInt("number", number.value)
-        edit.apply()
-    }
+    fun saveNumber(context: Context) = repository.saveNumber(context)
 }
 
 class CounterViewModelFactory() : ViewModelProvider.Factory {
@@ -60,6 +29,6 @@ class CounterViewModelFactory() : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             return CounterViewModel() as T
         }
-        throw IllegalAccessException("Unkown Viewmodel Class")
+        throw IllegalAccessException("Unkown ViewModel Class")
     }
 }

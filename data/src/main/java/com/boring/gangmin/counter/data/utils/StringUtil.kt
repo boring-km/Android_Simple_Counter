@@ -1,4 +1,4 @@
-package com.boring.gangmin.counter.utils
+package com.boring.gangmin.counter.data.utils
 
 // transfer String to Int function
 fun String.transferStringToInt(): Result<Int> {
