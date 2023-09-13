@@ -1,11 +1,11 @@
 package com.boring.gangmin.counter.data
 
 import android.content.Context
-import com.boring.gangmin.counter.data.utils.transferStringToInt
+import com.boring.gangmin.counter.data.utils.transferStringToLong
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class CounterNumberRepository {
-    private val number = MutableStateFlow(0)
+    private val number = MutableStateFlow(0L)
     val counterNumber = number
 
     fun add() {
@@ -23,7 +23,7 @@ class CounterNumberRepository {
     }
 
     fun setValue(str: String) {
-        str.transferStringToInt().onSuccess {
+        str.transferStringToLong().onSuccess {
             number.value = it
         }.onFailure {
             number.value = 0
@@ -31,12 +31,12 @@ class CounterNumberRepository {
     }
 
     fun init(context: Context) {
-        number.value = context.getSharedPreferences("key", 0).getInt("number", 0)
+        number.value = context.getSharedPreferences("key", 0).getLong("number", 0)
     }
 
     fun saveNumber(context: Context) {
         val edit = context.getSharedPreferences("key", 0).edit()
-        edit.putInt("number", number.value)
+        edit.putLong("number", number.value)
         edit.apply()
     }
 }

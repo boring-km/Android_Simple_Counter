@@ -1,9 +1,9 @@
 package com.boring.gangmin.counter.data.utils
 
 // transfer String to Int function
-fun String.transferStringToInt(): Result<Int> {
+fun String.transferStringToLong(): Result<Long> {
     return try {
-        Result.success(this.toInt())
+        Result.success(this.toLong())
     } catch (e: Exception) {
         Result.failure(e)
     }
