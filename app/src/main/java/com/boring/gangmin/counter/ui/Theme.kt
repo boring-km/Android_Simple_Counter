@@ -42,7 +42,7 @@ fun CounterTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = CounterTypography,
+        typography = counterTypography(),
         content = content
     )
 }

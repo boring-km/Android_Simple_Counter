@@ -1,16 +1,19 @@
 package com.boring.gangmin.counter.ui
 
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
-val CounterTypography = Typography(
+@Composable
+fun counterTypography() = Typography(
     headlineLarge = TextStyle(
-        fontSize = 200.sp,
+        fontSize = 200.nonScaledSp,
         color = Color.White,
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Bold,
@@ -19,7 +22,7 @@ val CounterTypography = Typography(
         )
     ),
     headlineMedium = TextStyle(
-        fontSize = 60.sp,
+        fontSize = 60.nonScaledSp,
         color = Color.Black,
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Bold,
@@ -28,7 +31,7 @@ val CounterTypography = Typography(
         )
     ),
     titleLarge = TextStyle(
-        fontSize = 150.sp,
+        fontSize = 150.nonScaledSp,
         color = Color.Black,
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.W400,
@@ -37,3 +40,7 @@ val CounterTypography = Typography(
         )
     ),
 )
+
+val Int.nonScaledSp
+    @Composable
+    get() = (this / LocalDensity.current.fontScale).sp
