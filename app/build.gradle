@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 36
     defaultConfig {
         applicationId "com.boring.gangmin.counter"
         minSdkVersion 21
-        targetSdk 34
-        versionCode 161
-        versionName "1.6.1"
+        targetSdk 36
+        versionCode 162
+        versionName "1.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
